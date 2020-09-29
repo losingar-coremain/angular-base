@@ -1,1 +1,23 @@
 <h1>Componente listado</h1>
+<!-- <ul>
+  <li *ngFor="let post of posts; let i = index">
+    <h2> {{post.title}} </h2>
+    <p> {{post.body}} </p>
+    <h4>Usuario {{post.userId}}</h4>
+  </li>
+</ul> -->
+
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let post of posts; let i = index">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{post.id}} - {{post.title}}
+      </mat-panel-title>
+      <mat-panel-description>
+        @Usuario{{post.userId}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>{{post.body}}</p>
+
+  </mat-expansion-panel>
+</mat-accordion>
