@@ -1,0 +1,35 @@
+.tenant-box .tenant-selector {
+  background-color: #2A3F54 !important;
+}
+
+.master-container {
+  margin-bottom: 25px;
+  padding: 15px 50px 15px 50px;
+  overflow-y: auto;
+  height: calc(100% - 25px);
+}
+
+#footer {
+  clear: both;
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  margin-top: -25px;
+  text-align: right;
+  vertical-align: middle;
+  padding-right: 15px;
+  padding-left: 15px;
+  background-color: #ededed;
+  color: #2a3f54;
+  z-index: 999;
+  font-size: 0.8em;
+}
+
+.center-zone {
+  overflow-y: hidden;
+  height: 100% !important;
+}
+
+.tag-root {
+  overflow: hidden;
+}
