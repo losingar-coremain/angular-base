@@ -42,6 +42,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PostListComponent } from "./components/post-list/post.list.component";
 import { PostFormComponent } from "./components/post-form/post.form.component";
 import { HeaderComponent } from "./components/layout/header/header.component";
+import { PostService } from "./services/post.service";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -55,6 +57,7 @@ import { HeaderComponent } from "./components/layout/header/header.component";
   imports: [
     // Modulos
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,

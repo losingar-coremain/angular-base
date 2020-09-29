@@ -12,4 +12,9 @@ export class PostService {
   get() {
     return this.http.get<Post[]>(`${this.baseUrl}`);
   }
+
+  add(post: Post) {
+    const endpointUrl = `${this.baseUrl}`;
+    return this.http.post<Post>(endpointUrl, post);
+  }
 }
