@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { Post } from "src/app/models/post.model";
+import { PostService } from "src/app/services/post.service";
 
 @Component({
   selector: "app-post-list",
@@ -32,5 +33,8 @@ export class PostListComponent {
     },
   ];
 
-  constructor() {}
+  constructor(private postService: PostService) {
+    this.postService=
+
+  }
 }
