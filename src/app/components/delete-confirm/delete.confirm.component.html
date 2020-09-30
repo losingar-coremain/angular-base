@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>¿Estás seguro que quieres eliminar el post?</h1>
 
 <div mat-dialog-actions fxLayout="row" fxLayoutAlign="center">
-  <button mat-raised-button>Cancelar</button>
+  <button mat-raised-button (click)="closeDialog()">Cancelar</button>
   <button mat-raised-button color="primary">Confirmar</button>
 </div>

@@ -12,4 +12,7 @@ export class DeleteConfirmComponent {
     public dialogRef: MatDialogRef<DeleteConfirmComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
+  closeDialog() {
+    this.dialogRef.close();
+  }
 }
