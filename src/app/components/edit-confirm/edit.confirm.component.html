@@ -1,9 +1,9 @@
-<h1 mat-dialog-title>Editar post</h1>
+<h1 mat-dialog-title>{{data.title}}</h1>
 
 
 <form class="example-form">
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Nuevo post">
+    <input matInput placeholder="Post description" [(ngModel)]="data.body" [ngModelOptions]="{standalone: true}">
   </mat-form-field>
 </form>
 

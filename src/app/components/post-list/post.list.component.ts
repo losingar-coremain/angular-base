@@ -33,9 +33,10 @@ export class PostListComponent implements OnInit {
       width: "300px",
     });
   }
-  openEditDialog(): void {
+  openEditDialog(data): void {
     const dialogRef = this.dialog.open(EditConfirmComponent, {
       width: "300px",
+      data: data,
     });
   }
 }

@@ -11,7 +11,9 @@ export class EditConfirmComponent {
   constructor(
     public dialogRef: MatDialogRef<EditConfirmComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) {
+    console.log(data);
+  }
   closeDialog() {
     this.dialogRef.close();
   }

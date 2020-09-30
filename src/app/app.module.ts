@@ -48,6 +48,7 @@ import { PostService } from "./services/post.service";
 import { HttpClientModule } from "@angular/common/http";
 import { DeleteConfirmComponent } from "./components/delete-confirm/delete.confirm.component";
 import { EditConfirmComponent } from "./components/edit-confirm/edit.confirm.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -62,6 +63,8 @@ import { EditConfirmComponent } from "./components/edit-confirm/edit.confirm.com
   ],
   imports: [
     // Modulos
+    ReactiveFormsModule,
+    FormsModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
