@@ -4,6 +4,7 @@ import { Observable, observable } from "rxjs";
 import { Post } from "src/app/models/post.model";
 import { PostService } from "src/app/services/post.service";
 import { DeleteConfirmComponent } from "../delete-confirm/delete.confirm.component";
+import { EditConfirmComponent } from "../edit-confirm/edit.confirm.component";
 
 @Component({
   selector: "app-post-list",
@@ -29,6 +30,11 @@ export class PostListComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DeleteConfirmComponent, {
+      width: "300px",
+    });
+  }
+  openEditDialog(): void {
+    const dialogRef = this.dialog.open(EditConfirmComponent, {
       width: "300px",
     });
   }

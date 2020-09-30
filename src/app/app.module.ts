@@ -47,6 +47,7 @@ import { HeaderComponent } from "./components/layout/header/header.component";
 import { PostService } from "./services/post.service";
 import { HttpClientModule } from "@angular/common/http";
 import { DeleteConfirmComponent } from "./components/delete-confirm/delete.confirm.component";
+import { EditConfirmComponent } from "./components/edit-confirm/edit.confirm.component";
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { DeleteConfirmComponent } from "./components/delete-confirm/delete.confi
     PostListComponent,
     PostFormComponent,
     DeleteConfirmComponent,
+    EditConfirmComponent,
   ],
   imports: [
     // Modulos
@@ -100,7 +102,7 @@ import { DeleteConfirmComponent } from "./components/delete-confirm/delete.confi
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DIALOG_DATA, useValue: [] },
   ],
-  entryComponents: [DeleteConfirmComponent],
+  entryComponents: [DeleteConfirmComponent, EditConfirmComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

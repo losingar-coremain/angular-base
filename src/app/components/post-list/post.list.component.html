@@ -23,6 +23,7 @@
     </mat-expansion-panel-header>
 
     <p>{{post.body}}</p>
-    <button mat-raised-button (click)="openDialog()">Borrar</button>
+    <button mat-stroked-button color="warn" (click)="openDialog()">Borrar</button>
+    <button mat-stroked-button color="primary" (click)="openEditDialog()">Editar</button>
   </mat-expansion-panel>
 </mat-accordion>
