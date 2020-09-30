@@ -45,8 +45,9 @@ export class PostListComponent implements OnInit {
   filtrado(value: string) {
     if (!value) {
       this.filteredPosts = this.posts;
+      console.log("Hola");
     } else {
-      this.filteredPosts = this.posts.filteredPosts((post) =>
+      this.filteredPosts = this.posts.filter((post) =>
         post.title.toLocaleLowerCase().includes(value.toLocaleLowerCase())
       );
     }
