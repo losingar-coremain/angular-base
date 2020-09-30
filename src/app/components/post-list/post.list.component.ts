@@ -29,7 +29,7 @@ export class PostListComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DeleteConfirmComponent, {
-      width: "250px",
+      width: "300px",
     });
   }
 }
