@@ -1,12 +1,15 @@
 <h1>Componente listado</h1>
-<!-- <ul>
-  <li *ngFor="let post of posts; let i = index">
-    <h2> {{post.title}} </h2>
-    <p> {{post.body}} </p>
-    <h4>Usuario {{post.userId}}</h4>
-  </li>
-</ul> -->
 
+
+<!-- Buscador -->
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Búsqueda">
+  </mat-form-field>
+</form>
+
+
+<!-- Listado -->
 <mat-accordion>
   <mat-expansion-panel *ngFor="let post of posts; let i = index">
     <mat-expansion-panel-header fxLayout="row" fxLayoutAlign="space-between start">
@@ -20,8 +23,6 @@
     </mat-expansion-panel-header>
 
     <p>{{post.body}}</p>
-
-
-
+    <button mat-raised-button (click)="openDialog()">Borrar</button>
   </mat-expansion-panel>
 </mat-accordion>

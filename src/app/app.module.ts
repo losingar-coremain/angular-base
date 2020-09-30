@@ -13,6 +13,7 @@ import {
   MatCheckboxModule,
   MatDatepickerModule,
   MatDialogModule,
+  MatDialogRef,
   MatDividerModule,
   MatExpansionModule,
   MatIconModule,
@@ -36,6 +37,7 @@ import {
   MatToolbarModule,
   MatTooltipModule,
   MatTreeModule,
+  MAT_DIALOG_DATA,
 } from "@angular/material";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -44,6 +46,7 @@ import { PostFormComponent } from "./components/post-form/post.form.component";
 import { HeaderComponent } from "./components/layout/header/header.component";
 import { PostService } from "./services/post.service";
 import { HttpClientModule } from "@angular/common/http";
+import { DeleteConfirmComponent } from "./components/delete-confirm/delete.confirm.component";
 
 @NgModule({
   declarations: [
@@ -53,6 +56,7 @@ import { HttpClientModule } from "@angular/common/http";
     HeaderComponent,
     PostListComponent,
     PostFormComponent,
+    DeleteConfirmComponent,
   ],
   imports: [
     // Modulos
@@ -92,7 +96,11 @@ import { HttpClientModule } from "@angular/common/http";
     MatTooltipModule,
     MatTreeModule,
   ],
-  providers: [],
+  providers: [
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] },
+  ],
+  entryComponents: [DeleteConfirmComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
