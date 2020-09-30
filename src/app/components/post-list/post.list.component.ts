@@ -13,6 +13,7 @@ import { EditConfirmComponent } from "../edit-confirm/edit.confirm.component";
 })
 export class PostListComponent implements OnInit {
   public posts: Post[] = [];
+  public filteredPosts: Post[] = [];
 
   constructor(private postService: PostService, private dialog: MatDialog) {}
 
@@ -21,6 +22,7 @@ export class PostListComponent implements OnInit {
       (data) => {
         // Success
         this.posts = data;
+        this.filteredPosts = this.posts;
       },
       (error) => {
         console.error(error);
@@ -38,5 +40,15 @@ export class PostListComponent implements OnInit {
       width: "500px",
       data: data,
     });
+  }
+
+  filtrado(value: string) {
+    if (!value) {
+      this.filteredPosts = this.posts;
+    } else {
+      this.filteredPosts = this.posts.filteredPosts((post) =>
+        post.title.toLocaleLowerCase().includes(value.toLocaleLowerCase())
+      );
+    }
   }
 }
