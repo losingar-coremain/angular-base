@@ -28,27 +28,41 @@
     <div class="field-container" fxLayout="column">
       <label class="no-label-style">Contraseña *</label>
       <mat-form-field class="full-width no-label" fxFlex="80" appearance="outline">
-        <input matInput formControlName="password" maxlength="50" required type="password">
+        <input matInput formControlName="password" maxlength="50" minlength="8" required type="password">
         <mat-error *ngIf="personalDataForm.hasError('required', 'password')">Este campo es obligatorio</mat-error>
+        <mat-error *ngIf="personalDataForm.hasError('minlength', 'password')">Este campo debe tener almenos 8 caracteres
+        </mat-error>
+        <mat-error *ngIf="personalDataForm.hasError('maxlength', 'password')">Este campo debe tener menos de 50
+          caracteres</mat-error>
+
+
       </mat-form-field>
     </div>
     <div class="field-container" fxLayout="column">
       <label class="no-label-style">Confirmar contraseña *</label>
       <mat-form-field class="full-width no-label" fxFlex="80" appearance="outline">
-        <input matInput formControlName="confirmacionPass" maxlength="50" required type="password">
+        <input matInput formControlName="confirmacionPass" maxlength="50" minlength="8" required type="password">
         <mat-error *ngIf="personalDataForm.hasError('required', 'confirmacionPass')">Este campo es obligatorio
         </mat-error>
+        <mat-error *ngIf="personalDataForm.hasError('minlength', 'password')">Este campo debe tener almenos 8 caracteres
+        </mat-error>
+        <mat-error *ngIf="personalDataForm.hasError('maxlength', 'password')">Este campo debe tener menos de 50
+          caracteres</mat-error>
       </mat-form-field>
     </div>
     <div class="field-container" fxLayout="column">
       <label class="no-label-style">Edad *</label>
       <mat-form-field class="full-width no-label" fxFlex="80" appearance="outline">
-        <mat-select formControlName="edad" required>
+        <mat-select formControlName="edad" required [errorStateMatcher]="matcher">
           <mat-option *ngFor="let years of numbers" [value]="years">
             {{years}}
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="personalDataForm.hasError('noValido','edad')">Debes ser mayor de 18 y menor de 65 años
+        </mat-error>
         <mat-error *ngIf="personalDataForm.hasError('required', 'edad')">Este campo es obligatorio</mat-error>
+        <!-- no me sale el mensaje -->
+
       </mat-form-field>
     </div>
     <div class="field-container" fxLayout="column">
@@ -119,6 +133,12 @@
 
     <mat-checkbox required formControlName="aceptedTerms">Acepto las condiciones
     </mat-checkbox>
+
+    <div mat-dialog-actions fxLayout="row" fxLayoutAlign="end">
+      <button mat-raised-button color="primary">Confirmar</button>
+    </div>
   </form>
+
+
 
 </div>

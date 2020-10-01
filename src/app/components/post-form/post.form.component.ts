@@ -25,7 +25,7 @@ export class PostFormComponent {
     this.personalDataForm = this.formBuilder.group({
       nombre: ["", [Validators.required]],
       apellidos: ["", [Validators.required]],
-      edad: ["", [Validators.required]],
+      edad: ["", [Validators.required, this.AgeValidator]],
       sexo: ["", [Validators.required]],
       DNI: ["", [Validators.required]],
       NIF: ["", [Validators.required]],
@@ -39,6 +39,15 @@ export class PostFormComponent {
       tarjeta: ["", [Validators.required]],
       aceptedTerms: ["", Validators.required, Validators.requiredTrue],
     });
+  }
+
+  AgeValidator(age) {
+    console.log(age.value);
+    if (age.value < 18 || age.value > 65) {
+      return { noValido: true };
+    } else {
+      return null;
+    }
   }
 }
 // - Nombre (campo obligatorio)
