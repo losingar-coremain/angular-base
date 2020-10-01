@@ -25,6 +25,20 @@
     </mat-form-field>
   </div>
   <div class="field-container" fxLayout="column">
+    <label class="no-label-style">Contraseña *</label>
+    <mat-form-field class="full-width no-label" fxFlex="80" appearance="outline">
+      <input matInput formControlName="password" maxlength="50" required type="password">
+      <mat-error *ngIf="personalDataForm.hasError('required', 'password')">Este campo es obligatorio</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="field-container" fxLayout="column">
+    <label class="no-label-style">Confirmar contraseña *</label>
+    <mat-form-field class="full-width no-label" fxFlex="80" appearance="outline">
+      <input matInput formControlName="confirmacionPass" maxlength="50" required type="password">
+      <mat-error *ngIf="personalDataForm.hasError('required', 'confirmacionPass')">Este campo es obligatorio</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="field-container" fxLayout="column">
     <label class="no-label-style">Edad *</label>
     <mat-form-field class="full-width no-label" fxFlex="80" appearance="outline">
       <mat-select formControlName="edad" required>
