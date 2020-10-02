@@ -99,6 +99,8 @@
       <mat-form-field class="full-width no-label" fxFlex="80" appearance="outline">
         <input matInput formControlName="CIF" maxlength="50" required>
         <mat-error *ngIf="personalDataForm.hasError('required', 'CIF')">Este campo es obligatorio</mat-error>
+        <mat-error *ngIf="personalDataForm.hasError('pattern', 'CIF')">CIF no válido</mat-error>
+
       </mat-form-field>
     </div>
     <div class="field-container" fxLayout="column">
@@ -134,6 +136,8 @@
       <mat-form-field class="full-width no-label" fxFlex="80" appearance="outline">
         <input matInput formControlName="tarjeta" maxlength="50" required>
         <mat-error *ngIf="personalDataForm.hasError('required', 'tarjeta')">Este campo es obligatorio</mat-error>
+        <mat-error *ngIf="personalDataForm.hasError('pattern', 'tarjeta')">Numero de tarjeta no válido</mat-error>
+
       </mat-form-field>
     </div>
 
