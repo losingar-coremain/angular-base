@@ -34,20 +34,19 @@
         </mat-error>
         <mat-error *ngIf="personalDataForm.hasError('maxlength', 'password')">Este campo debe tener menos de 50
           caracteres</mat-error>
-
-
       </mat-form-field>
     </div>
     <div class="field-container" fxLayout="column">
       <label class="no-label-style">Confirmar contraseña *</label>
       <mat-form-field class="full-width no-label" fxFlex="80" appearance="outline">
-        <input matInput formControlName="confirmacionPass" maxlength="50" minlength="8" required type="password">
+        <input matInput formControlName="confirmacionPass" maxlength="50" minlength="8" required type="password"
+          [errorStateMatcher]="matcher">
         <mat-error *ngIf="personalDataForm.hasError('required', 'confirmacionPass')">Este campo es obligatorio
         </mat-error>
-        <mat-error *ngIf="personalDataForm.hasError('minlength', 'password')">Este campo debe tener almenos 8 caracteres
+        <mat-error *ngIf="personalDataForm.hasError('notSame')">Las contraseñas no coinciden
+          <!--No se muestra este mensaje-->
         </mat-error>
-        <mat-error *ngIf="personalDataForm.hasError('maxlength', 'password')">Este campo debe tener menos de 50
-          caracteres</mat-error>
+
       </mat-form-field>
     </div>
     <div class="field-container" fxLayout="column">

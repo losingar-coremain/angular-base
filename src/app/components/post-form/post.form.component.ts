@@ -27,7 +27,7 @@ export class PostFormComponent {
     this.personalDataForm = this.formBuilder.group({
       nombre: ["", [Validators.required]],
       apellidos: ["", [Validators.required]],
-      edad: ["", [Validators.required, this.AgeValidator]],
+      edad: ["", [Validators.required, this.ageValidator]],
       sexo: ["", [Validators.required]],
       DNI: [
         "",
@@ -82,11 +82,16 @@ export class PostFormComponent {
     });
   }
 
-  AgeValidator(age) {
+  ageValidator(age) {
     if ((age.value < 18 || age.value > 65) && age.value) {
       return { noValido: true };
     } else {
       return null;
     }
+  }
+  checkPasswords(group: FormGroup) {
+    const pass = group.controls.password.value;
+    const confirmPass = group.controls.confirmacionPass.value;
+    return pass === confirmPass ? null : { notSame: true };
   }
 }
