@@ -15,6 +15,7 @@ import { error } from "protractor";
 })
 export class PostFormComponent {
   public personalDataForm: FormGroup;
+  public telefono: FormControl;
   public numbers = [];
   public generos = ["Hombre", "Mujer"];
   constructor(private formBuilder: FormBuilder) {
@@ -22,46 +23,70 @@ export class PostFormComponent {
       .fill(Number)
       .map((x, i) => i + 1)
       .slice(9);
+
     this.personalDataForm = this.formBuilder.group({
       nombre: ["", [Validators.required]],
       apellidos: ["", [Validators.required]],
       edad: ["", [Validators.required, this.AgeValidator]],
       sexo: ["", [Validators.required]],
-      DNI: ["", [Validators.required]],
-      NIF: ["", [Validators.required]],
-      CIF: ["", [Validators.required]],
+      DNI: [
+        "",
+        [Validators.required, Validators.pattern(/((\d{8})([-]?)([a-zA-Z]))/)],
+      ],
+      NIE: [
+        "",
+        [
+          Validators.required,
+          Validators.pattern(
+            /((([X-Z])|([LM])){1}([-]?)((\d){7})([-]?)([a-zA-Z]{1}))/
+          ),
+        ],
+      ],
+      CIF: [
+        "",
+        [
+          Validators.required,
+          Validators.pattern(/[a-zA-Z]{1}\d{7}[a-zA-Z0-9]{1}/),
+        ],
+      ],
       email: ["", [Validators.required, Validators.email]],
-      telefono: ["", Validators.required],
-      url: ["", [Validators.required]],
+      telefono: [
+        "",
+        [
+          Validators.required,
+          Validators.pattern(
+            /^\+?([0-9]{2})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})[-. ]?([0-9]{3})$/
+          ),
+        ],
+      ],
+      url: [
+        "",
+        [
+          Validators.required,
+          Validators.pattern(
+            /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/
+          ),
+        ],
+      ],
       password: ["", [Validators.required]],
       confirmacionPass: ["", [Validators.required]],
       company: ["", [Validators.required]],
-      tarjeta: ["", [Validators.required]],
+      tarjeta: [
+        "",
+        [
+          Validators.required,
+          Validators.pattern(/^([0-9]{4}( |\-)){3}[0-4]{4}$/),
+        ],
+      ],
       aceptedTerms: ["", Validators.required, Validators.requiredTrue],
     });
   }
 
   AgeValidator(age) {
-    console.log(age.value);
-    if (age.value < 18 || age.value > 65) {
+    if ((age.value < 18 || age.value > 65) && age.value) {
       return { noValido: true };
     } else {
       return null;
     }
   }
 }
-// - Nombre (campo obligatorio)
-// - Apellidos (campo obligatorio)
-// - Edad (campo seleccionable obligatorio, valores entre 10 y 99, mínimo 18 años, máximo 65)
-// - Sexo (campo seleccionable obligatorio, valores H/M)
-// - DNI (campo obligatorio, formato de dni válido)
-// - NIF (campo obligatorio, formato de gif válido)
-// - Email (campo obligatorio, formato de email válido)
-// - Teléfono (campo obligatorio, formato de teléfono válido)
-// - URL (campo obligatorio, formato de url válida)
-// - Contraseña (campo obligatorio, mínimo 8 caracteres)
-// - Confirma contraseña (campo obligatorio, mínimo 8 caracteres)
-// - Compañía (campo obligatorio)
-// - CIF (campo obligatorio, formato de cif válido)
-// - Tarjeta de crédito (campo obligatorio, formato de tarjeta válido)
-// - Checkbox Acepto términos y condiciones (campo obligatorio a true)

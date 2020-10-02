@@ -20,7 +20,7 @@
     <div cclass="field-container" fxLayout="column">
       <label class="no-label-style">Email *</label>
       <mat-form-field class="full-width no-label" fxFlex="80" appearance="outline">
-        <input matInput formControlName="email" maxlength="50" required>
+        <input matInput formControlName="email" maxlength="50" required type="email">
         <mat-error *ngIf="personalDataForm.hasError('required', 'email')">Este campo es obligatorio</mat-error>
         <mat-error *ngIf="personalDataForm.hasError('email', 'email')">Email no válido</mat-error>
       </mat-form-field>
@@ -68,12 +68,12 @@
     <div class="field-container" fxLayout="column">
       <label class="no-label-style">Sexo *</label>
       <mat-form-field class="full-width no-label" fxFlex="80" appearance="outline">
-        <mat-select formControlName="sexo" required>
+        <mat-select formControlName="sexo" required [errorStateMatcher]="matcher">
           <mat-option *ngFor="let genero of generos" [value]="genero">
             {{genero}}
           </mat-option>
         </mat-select>
-        <mat-error *ngIf="personalDataForm.hasError('required', 'genero')">Este campo es obligatorio</mat-error>
+        <mat-error *ngIf="personalDataForm.hasError('required', 'sexo')">Este campo es obligatorio</mat-error>
       </mat-form-field>
     </div>
     <div class="field-container" fxLayout="column">
@@ -81,13 +81,17 @@
       <mat-form-field class="full-width no-label" fxFlex="80" appearance="outline">
         <input matInput formControlName="DNI" maxlength="50" required>
         <mat-error *ngIf="personalDataForm.hasError('required', 'DNI')">Este campo es obligatorio</mat-error>
+        <mat-error *ngIf="personalDataForm.hasError('pattern', 'DNI')">DNI no válido</mat-error>
+
       </mat-form-field>
     </div>
     <div class="field-container" fxLayout="column">
-      <label class="no-label-style">NIF *</label>
+      <label class="no-label-style">NIE *</label>
       <mat-form-field class="full-width no-label" fxFlex="80" appearance="outline">
-        <input matInput formControlName="NIF" maxlength="50" required>
-        <mat-error *ngIf="personalDataForm.hasError('required', 'NIF')">Este campo es obligatorio</mat-error>
+        <input matInput formControlName="NIE" maxlength="50" required>
+        <mat-error *ngIf="personalDataForm.hasError('required', 'NIE')">Este campo es obligatorio</mat-error>
+        <mat-error *ngIf="personalDataForm.hasError('pattern', 'NIE')">NIE no válido</mat-error>
+
       </mat-form-field>
     </div>
     <div class="field-container" fxLayout="column">
@@ -98,19 +102,21 @@
       </mat-form-field>
     </div>
     <div class="field-container" fxLayout="column">
-      <label class="no-label-style">Teléfono secundario</label>
+      <label class="no-label-style">Teléfono</label>
       <mat-form-field class="full-width no-label" fxFlex="80" appearance="outline">
-        <input matInput formControlName="telefono" maxlength="22">
-        <mat-error *ngIf="personalDataForm.hasError('required', 'telefono')">Teléfono no válido</mat-error>
+        <input matInput formControlName="telefono" maxlength="22" placeholder="+XX XXX XXX XXX">
+        <mat-error *ngIf="personalDataForm.hasError('pattern', 'telefono')">Teléfono no válido</mat-error>
+        <mat-error *ngIf="personalDataForm.hasError('required', 'telefono')">Teléfono es un campo requerido</mat-error>
+
       </mat-form-field>
     </div>
 
     <div class="field-container" fxLayout="column">
       <label class="no-label-style">Página web *</label>
       <mat-form-field class="full-width no-label" fxFlex="80" appearance="outline">
-        <input matInput formControlName="url" (change)="urlValueChanged('paginaWebEmpresa')" maxlength="50" required>
+        <input matInput formControlName="url" maxlength="50" required>
         <mat-error *ngIf="personalDataForm.hasError('required', 'url')">Este campo es obligatorio</mat-error>
-        <mat-error *ngIf="personalDataForm.hasError('invalidUrl', 'url')">La URL introducida <b>no es
+        <mat-error *ngIf="personalDataForm.hasError('pattern', 'url')">La URL introducida <b>no es
             válida</b>. <br />Debe estar compuesta por protocolo (http:// o https://) y dominio (nombre.com)</mat-error>
       </mat-form-field>
     </div>
@@ -119,7 +125,7 @@
       <label class="no-label-style">Compañia *</label>
       <mat-form-field class="full-width no-label" fxFlex="80" appearance="outline">
         <input matInput formControlName="company" maxlength="50" required>
-        <mat-error *ngIf="personalDataForm.hasError('required', 'cpmpany')">Este campo es obligatorio</mat-error>
+        <mat-error *ngIf="personalDataForm.hasError('required', 'company')">Este campo es obligatorio</mat-error>
       </mat-form-field>
     </div>
 
