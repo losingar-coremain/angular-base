@@ -8,27 +8,43 @@ import { DeleteConfirmComponent } from "../delete-confirm/delete.confirm.compone
 import { EditConfirmComponent } from "../edit-confirm/edit.confirm.component";
 import { PageEvent } from "@angular/material/paginator";
 import { User } from "src/app/models/user.model";
-
+import { FormControl } from "@angular/forms";
+import { map, startWith } from "rxjs/operators";
 @Component({
   selector: "app-post-list",
   templateUrl: "post.list.component.html",
   styleUrls: ["post.list.component.css"],
 })
 export class PostListComponent implements OnInit {
-  [x: string]: any;
   public posts: Post[] = [];
   public selectedResult: Post[] = [];
   public users: User[] = [];
+
+  private _filterUsers(value: string): User[] {
+    const filterValue = value.toLowerCase();
+
+    return this.users.filter(
+      (user) => user.name.toLowerCase().indexOf(filterValue) === 0
+    );
+  }
+
   length: number;
   pageSize = 10;
   pageSizeOptions: number[] = [5, 10, 25, 50, 100];
   pageEvent: PageEvent;
+  stateCtrl = new FormControl();
+  filteredUsers: Observable<User[]>;
 
   constructor(
     private postService: PostService,
     private dialog: MatDialog,
     private userService: UserService
-  ) {}
+  ) {
+    this.filteredUsers = this.stateCtrl.valueChanges.pipe(
+      startWith(""),
+      map((user) => (user ? this._filterUsers(user) : this.users.slice()))
+    );
+  }
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
