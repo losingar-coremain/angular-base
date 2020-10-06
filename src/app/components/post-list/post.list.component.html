@@ -10,14 +10,13 @@
   </button>
 </mat-form-field>
 
-<!-- 
-<mat-paginator [length]="filteredPosts.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
-  (page)="pageEvent = getPaginatorData($event) ">
-</mat-paginator> -->
+<mat-paginator #paginator [length]="length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions"
+  (page)="pageEvent=getData($event)"></mat-paginator>
+
 
 <!-- Listado -->
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let post of filteredPosts; let i = index">
+  <mat-expansion-panel *ngFor="let post of selectedResult; let i = index">
     <mat-expansion-panel-header fxLayout="row" fxLayoutAlign="space-between start">
       <mat-panel-title>
         {{post.id}} - <strong>{{post.title}}</strong>

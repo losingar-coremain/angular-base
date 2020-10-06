@@ -5,6 +5,7 @@ import { Post } from "src/app/models/post.model";
 import { PostService } from "src/app/services/post.service";
 import { DeleteConfirmComponent } from "../delete-confirm/delete.confirm.component";
 import { EditConfirmComponent } from "../edit-confirm/edit.confirm.component";
+import { PageEvent } from "@angular/material/paginator";
 
 @Component({
   selector: "app-post-list",
@@ -13,22 +14,39 @@ import { EditConfirmComponent } from "../edit-confirm/edit.confirm.component";
 })
 export class PostListComponent implements OnInit {
   public posts: Post[] = [];
-  public filteredPosts: Post[] = [];
-
-  // @ViewChild(MatPaginator) paginator: MatPaginator;
-  // pageSize = 10;
-  // lowValue = 1;
-  // highValue = 100;
-  // pageIndex = 0;
+  public selectedResult: Post[] = [];
+  length: number;
+  pageSize = 10;
+  pageSizeOptions: number[] = [5, 10, 25, 50, 100];
+  pageEvent: PageEvent;
 
   constructor(private postService: PostService, private dialog: MatDialog) {}
+
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    if (setPageSizeOptionsInput) {
+      this.pageSizeOptions = setPageSizeOptionsInput
+        .split(",")
+        .map((str) => +str);
+    }
+  }
+
+  getData(event?: PageEvent) {
+    this.selectedResult = this.posts.slice(
+      event.pageIndex * event.pageSize,
+      event.pageIndex * event.pageSize + event.pageSize
+    );
+    return event;
+  }
 
   ngOnInit() {
     this.postService.get().subscribe(
       (data) => {
         // Success
         this.posts = data;
-        this.filteredPosts = this.posts;
+        this.length = this.posts.length;
+        this.selectedResult = this.posts.slice(0, this.pageSize);
       },
       (error) => {
         console.error(error);
@@ -50,25 +68,11 @@ export class PostListComponent implements OnInit {
 
   filtrado(value: string) {
     if (!value) {
-      this.filteredPosts = this.posts;
-      console.log("Hola");
+      this.selectedResult = this.posts;
     } else {
-      this.filteredPosts = this.posts.filter((post) =>
+      this.selectedResult = this.posts.filter((post) =>
         post.title.toLocaleLowerCase().includes(value.toLocaleLowerCase())
       );
     }
   }
-
-  // getPaginatorData(event) {
-  //   if (event.pageIndex === this.pageIndex) {
-  //     this.lowValue = this.lowValue + this.pageSize;
-  //     this.highValue = this.highValue + this.pageSize;
-  //   }
-
-  //   if (event.pageIndex < this.pageIndex - 1) {
-  //     this.lowValue = this.lowValue - this.pageSize;
-  //     this.highValue = this.highValue - this.pageSize;
-  //   }
-  //   this.pageIndex = event.pageIndex + 1;
-  // }
 }
