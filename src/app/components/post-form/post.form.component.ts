@@ -83,7 +83,7 @@ export class PostFormComponent {
             Validators.pattern(/^([0-9]{4}( |\-)){3}[0-4]{4}$/),
           ],
         ],
-        aceptedTerms: ["", Validators.required, Validators.requiredTrue],
+        aceptedTerms: ["", Validators.requiredTrue],
       },
       { validator: this.MustMatch("password", "confirmacionPass") }
     );
