@@ -2,7 +2,6 @@
 
 
 <!-- Buscador post -->
-
 <mat-form-field class="example-form-field" class="buscador">
   <input matInput type="text" placeholder="Búsqueda" [(ngModel)]="value" (keyup)="filtrado(value)">
   <button mat-button *ngIf=" value" matSuffix mat-icon-button aria-label="Clear" (click)="value='';filtrado(value)">
@@ -44,13 +43,7 @@
 
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <section>
-      <p>{{post.body}}</p>
-    </section>
-    <div mat-dialog-actions fxLayout=" row" fxLayoutAlign="end">
-      <button mat-stroked-button color="warn" (click)="openDialog()">Borrar</button>
-      <button mat-stroked-button color="primary" (click)="openEditDialog(post)">Editar</button>
-    </div>
+    <app-post-detail [post]=post></app-post-detail>
 
   </mat-expansion-panel>
 </mat-accordion>

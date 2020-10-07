@@ -10,6 +10,7 @@ import { PageEvent } from "@angular/material/paginator";
 import { User } from "src/app/models/user.model";
 import { FormControl } from "@angular/forms";
 import { map, startWith } from "rxjs/operators";
+
 @Component({
   selector: "app-post-list",
   templateUrl: "post.list.component.html",
@@ -37,7 +38,6 @@ export class PostListComponent implements OnInit {
 
   constructor(
     private postService: PostService,
-    private dialog: MatDialog,
     private userService: UserService
   ) {
     this.filteredUsers = this.stateCtrl.valueChanges.pipe(
@@ -88,18 +88,6 @@ export class PostListComponent implements OnInit {
         console.error(error);
       }
     );
-  }
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DeleteConfirmComponent, {
-      width: "300px",
-    });
-  }
-  openEditDialog(data): void {
-    const dialogRef = this.dialog.open(EditConfirmComponent, {
-      width: "500px",
-      data: data,
-    });
   }
 
   filtrado(value: string) {

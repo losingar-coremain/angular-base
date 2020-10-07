@@ -1,0 +1,7 @@
+<section>
+  <p>{{post.body}}</p>
+</section>
+<div mat-dialog-actions fxLayout=" row" fxLayoutAlign="end">
+  <button mat-stroked-button color="warn" (click)="openDialog()">Borrar</button>
+  <button mat-stroked-button color="primary" (click)="openEditDialog(post)">Editar</button>
+</div>
