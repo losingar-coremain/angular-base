@@ -65,21 +65,24 @@ export class PostListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.postService.get().subscribe(
+    this.userService.get().subscribe(
       (data) => {
         // Success
-        this.posts = data;
-        this.length = this.posts.length;
-        this.selectedResult = this.posts.slice(0, this.pageSize);
+        this.users = data;
       },
       (error) => {
         console.error(error);
       }
     );
-    this.userService.get().subscribe(
+    this.postService.get().subscribe(
       (data) => {
         // Success
-        this.users = data;
+        this.posts = data;
+        for (const post of this.posts) {
+          post.user = this.users.filter((f) => f.id === post.userId)[0];
+        }
+        this.length = this.posts.length;
+        this.selectedResult = this.posts.slice(0, this.pageSize);
       },
       (error) => {
         console.error(error);
